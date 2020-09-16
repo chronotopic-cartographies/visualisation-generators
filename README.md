@@ -1,5 +1,10 @@
 # Chronotopic Cartographies - Visualisation Generators, Texts, and Explanatory Guide
 
+This repository contains marked up texts, visualisations, and Python scripts for generating visualisations related to the AHRC-funded *Chronotopic Cartographies for Literature* project at Lancaster University. 
+
+This readme file contains a complete explanation of the XML schema designed by the research team, documentation of the visualisations themselves, and a step-by-step guide to creating your own visualisations.
+
+
 ## Literary Topology: An Explanation of the Map Types
 
 Each individual marked-up XML text when processed using a custom Python script generates not one map but a map series.  These present different kinds of spatial relations in the text. We call these graphs “maps” because, although they are topological forms, this is their primary function in relation to a literary text.  They allow for the relative mapping of the internal contents of a text (as opposed to the absolute mapping of the literary world onto the real). We are calling this “literary topology”.  The map types are described below.
