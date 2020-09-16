@@ -25,3 +25,19 @@ This shows the topoi and their connections as they appear sequentially across th
 ### Fabula Map
 Partnering with the Syuzhet Map above, the Fabula Map shows the topoi and connections in the order of the story: that is, the order in which events occurred (not necessarily the order as narrated).  This is difficult to achieve for a complex text, so at present fabula maps only exist for shorter poems with the Fabula constructed by re-ordering the Syuzhet rather than generated directly. 
 
+## Guide to Generating Visualisations
+
+### Overview
+
+Generating a Chronotopic Cartographies visualisation is a five step process:
+
+1.  Marking up a text [using the CC XML schema – see separate Guide]
+2.  Validating the marked up text
+3.  Generating the graph from the XML
+4.  Laying out the graph in Gephi
+5.  Generating the final visualisation
+
+This document provides instructions for steps 2, 3 and 4.  It assumes that you already have a text marked up using the schema.
+
+
+
