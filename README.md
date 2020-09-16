@@ -46,5 +46,65 @@ To get started, visit https://notebooks.azure.com/ and sign in using the link in
 
 ![Azure Notebooks Sign-in Page](/img/fig-1.png)
 
+Once you’ve signed in, you’ll be presented with a screen that looks something like this:
+
+![My Projects Page](/img/fig-2.png)
+
+This is where your projects are stored: if you’ve not used Azure Notebooks before, there won’t be anything here. 
+
+To get started with the tools, you will need to ‘clone’ the project containing the Chronotopic Cartographies tools into your account. This will give you a copy of the tools that you can use (and modify) to generate your own visualisations.
+
+To do this, go to this link: https://notebooks.azure.com/d-hay1/projects/chronocarto-text-proc-vis-gen
+
+![Chronotopic Cartographies Project](/img/fig-3.png)
+
+Click on the ‘Clone’ button, which will bring up this dialogue:
+
+![Clone Project Dialogue](/img/fig-4.png)
+
+Check the ‘I trust the contents of this project’ box, and then click ‘Clone’. The project will then re-open in your workspace. To check that this has indeed occurred,  look at the breadcrumb links at the top of the page. If the project has been cloned successfully into your account, it should look like this:
+
+![Breadcrumbs](/img/fig-5.png)
+
+The project contains the following files and folders:
+
+`graphs.ipynb`
+The notebook which contains the code for generating graph files from marked-up texts
+
+`xml_checker.ipynb`
+Contains the code for making sure your texts are properly marked-up and tells you where any errors might be.
+
+`visualisations.ipynb`
+The code for generating the visualisations from the laid-out Gephi .graphml files
+
+`files/`
+Contains the working documents and the outputs from the graph generation and visualisation notebooks. Contains the following sub-folders:
+
+`background_svgs/`
+Put background images for ‘referential’ graphs (such as the chessboard for Through the Looking Glass) in this folder
+
+`graphs/`
+The graphs generated from your XML files are stored here; upload the .graphml files made with Gephi to this folder.
+
+`svg/`
+The final visualisations are saved here
+
+`symbology_colour/`
+The icons for the different chronotopes are stored here – you shouldn’t need to touch this unless you want to design your own custom symbology.
+
+`xml/`
+Upload your marked-up texts to this folder
+ 
+### Completing the Coding Process
+There are two stages to ensuring that the marked-up text is going to successfully generate maps. 
+
+#### Cleaning and Validating the XML
+Step 1 is to ensure that your marked-up text is valid XML and can be read by the computer. 
+
+Once all the coding has been done according to the schema, run your XML files through a validator (https://codebeautify.org/xmlvalidator). This will ensure your markup is clean (or ‘well formed’) and will therefore be able to be processed by the graph generation scripts.
+
+Simply copy your entire marked-up text from Sublime Text and paste it into the Validator. Then work through it as the Validator identifies any errors. 
+
+![CodeBeautify XML Validator](/img/fig-6.png)
 
 
