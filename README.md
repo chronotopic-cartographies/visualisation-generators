@@ -39,5 +39,12 @@ Generating a Chronotopic Cartographies visualisation is a five step process:
 
 This document provides instructions for steps 2, 3 and 4.  It assumes that you already have a text marked up using the schema.
 
+### Accessing the Tools
+The tools for creating the Chronotopic Cartographies maps/graphs are a series of iPython Notebooks (https://jupyter.org/), which is a tool for running Python code in a (fairly) user-friendly way. Whilst you can run these on your own computer by downloading this repository and installing Jupyter, it’s easier to use Microsoft Azure services, which lets you run iPython notebooks in your web browser without installing any software yourself. If you have a Microsoft account (either through your university or if you have a Hotmail email address or similar), you should have free access to this.
+
+To get started, visit https://notebooks.azure.com/ and sign in using the link in the top right-hand corner.
+
+![Azure Notebooks Sign-in Page](/img/fig-1.png)
+
 
 
