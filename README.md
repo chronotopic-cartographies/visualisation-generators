@@ -44,39 +44,19 @@ Generating a Chronotopic Cartographies visualisation is a five step process:
 This document provides instructions for steps 2, 3 and 4.  It assumes that you already have a text marked up using the schema.
 
 ### Accessing the Tools
-The tools for creating the Chronotopic Cartographies maps/graphs are a series of iPython Notebooks (https://jupyter.org/), which is a tool for running Python code in a (fairly) user-friendly way. Whilst you can run these on your own computer by downloading this repository and installing Jupyter, it’s easier to use Microsoft Azure services, which lets you run iPython notebooks in your web browser without installing any software yourself. If you have a Microsoft account (either through your university or if you have a Hotmail email address or similar), you should have free access to this.
+The tools for creating the Chronotopic Cartographies maps/graphs are a series of iPython Notebooks (https://jupyter.org/), which is a tool for running Python code in a (fairly) user-friendly way. 
 
-To get started, visit https://notebooks.azure.com/ and sign in using the link in the top right-hand corner.
+The easiest way to get up and running on your own computer is to use Anaconda. To get started, go to this link (https://www.anaconda.com/products/individual) to download the software.
 
-![Azure Notebooks Sign-in Page](/img/fig-1.png)
+Once you've created your graphs, you will also need a copy of Gephi (https://gephi.org/), which we will be using to lay out and edit your graphs before creating the finished visualisations.
 
-Once you’ve signed in, you’ll be presented with a screen that looks something like this:
+Once you've downloaded Anaconda, download this repository and save it to your computer. Run Anaconda and navigate to the place where you saved this repository and then get started by opening the 'start_here.inpyb' notebook.
 
-![My Projects Page](/img/fig-2.png)
-
-This is where your projects are stored: if you’ve not used Azure Notebooks before, there won’t be anything here. 
-
-To get started with the tools, you will need to ‘clone’ the project containing the Chronotopic Cartographies tools into your account. This will give you a copy of the tools that you can use (and modify) to generate your own visualisations.
-
-To do this, go to this link: https://notebooks.azure.com/d-hay1/projects/chronocarto-text-proc-vis-gen
-
-![Chronotopic Cartographies Project](/img/fig-3.png)
-
-Click on the ‘Clone’ button, which will bring up this dialogue:
-
-![Clone Project Dialogue](/img/fig-4.png)
-
-Check the ‘I trust the contents of this project’ box, and then click ‘Clone’. The project will then re-open in your workspace. To check that this has indeed occurred,  look at the breadcrumb links at the top of the page. If the project has been cloned successfully into your account, it should look like this:
-
-![Breadcrumbs](/img/fig-5.png)
 
 The project contains the following files and folders:
 
 `graphs.ipynb`
 The notebook which contains the code for generating graph files from marked-up texts
-
-`xml_checker.ipynb`
-Contains the code for making sure your texts are properly marked-up and tells you where any errors might be.
 
 `visualisations.ipynb`
 The code for generating the visualisations from the laid-out Gephi .graphml files
