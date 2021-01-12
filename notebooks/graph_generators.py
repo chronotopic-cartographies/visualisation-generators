@@ -3,6 +3,8 @@ import networkx as nx
 import pprint
 from bs4 import BeautifulSoup, element
 import json
+from io import StringIO
+
 
 class CCXMLValidator:
     """Checks a Chrono-carto encoded XML file for errors"""
@@ -36,6 +38,56 @@ class CCXMLValidator:
         'intratextual',
         'metaphor'
     ]
+    
+    # An experimental DTD for the CC schema - can be used with check_against_dtd, below. DTD enumerated values do not permit whitespace, therefore the schema defined here is slightly different to schema in use, hence its designation 'experimental'.
+    dtd_str = """
+    <!ELEMENT document ANY>
+    <!ELEMENT topos (#PCDATA)>
+    <!ATTLIST topos type 
+        (encounter|
+        road|
+        castle|
+        idyll|
+        wilderness|
+        anti-idyll|
+        threshold|
+        parlour|
+        town|
+        square|
+        distortion|
+        metanarrative)
+    #REQUIRED>
+    <!ATTLIST topos framename CDATA #REQUIRED>
+
+    <!ELEMENT connection (#PCDATA)>
+    <!ATTLIST connection relation
+        (direct | 
+        indirect |
+        projection | 
+        interrupt | 
+        jump | 
+        intratextual | 
+        paratextual | 
+        metatextual)
+    #REQUIRED>
+    <!ATTLIST connection source CDATA #REQUIRED>
+    <!ATTLIST connection target CDATA #REQUIRED>
+
+    <!ELEMENT toporef (#PCDATA)>
+    <!ATTLIST toporef role
+        (active | 
+        passive | 
+        metaphor | 
+        alt | 
+        act)
+    #REQUIRED>
+    <!ATTLIST toporef relation
+        (direct | 
+        indirect |
+        projection | 
+        jump)
+    #IMPLIED>
+    """
     
     def __init__(self, file):
         tree = etree.parse(file)
@@ -136,6 +188,16 @@ class CCXMLValidator:
             message += 'No mismatches found!\n'
         
         print(message)
+        
+    def check_against_dtd(self, dtd_str):
+        """This works, but the DTD doesn't actually reflect the schema in use, as our attribute values include whitespace, which aren't valid in DTD enumerated values."""
+        f = StringIO(dtd_str)
+        dtd = etree.DTD(f)
+        if dtd.validate(self.xml_element) == True:
+            return True
+        else
+            print(dtd.error_log.filter_from_errors()[0])
+        
 
 
 
