@@ -195,7 +195,7 @@ class CCXMLValidator:
         dtd = etree.DTD(f)
         if dtd.validate(self.xml_element) == True:
             return True
-        else
+        else:
             print(dtd.error_log.filter_from_errors()[0])
         
 
