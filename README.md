@@ -44,13 +44,27 @@ Generating a Chronotopic Cartographies visualisation is a five step process:
 This document provides instructions for steps 2, 3 and 4.  It assumes that you already have a text marked up using the schema.
 
 ### Accessing the Tools
+
+#### Python Notebooks
 The tools for creating the Chronotopic Cartographies maps/graphs are a series of iPython Notebooks (https://jupyter.org/), which is a tool for running Python code in a (fairly) user-friendly way. 
 
-The easiest way to get up and running on your own computer is to use Anaconda. To get started, go to this link (https://www.anaconda.com/products/individual) to download the software.
+There are two ways of running the notebooks. The easiest way is to click on the link below, which will open an interactive version of this repository on mybinder.org. This is a good option if you want to try the tools without having to install anything on your own computer. 
+
+https://mybinder.org/v2/gh/chronotopic-cartographies/visualisation-generators/HEAD
+
+Once the 
+
+
+
+If you find them useful, you can open them on your own computer using Anaconda, which can be downloaded from here: https://www.anaconda.com/products/individual
+
+Once you've downloaded Anaconda, download this repository and save it to your computer. Run Anaconda and navigate to the place where you saved this repository and then get started by opening the 'start_here.inpyb' notebook.
+
+
+#### Gephi
 
 Once you've created your graphs, you will also need a copy of Gephi (https://gephi.org/), which we will be using to lay out and edit your graphs before creating the finished visualisations.
 
-Once you've downloaded Anaconda, download this repository and save it to your computer. Run Anaconda and navigate to the place where you saved this repository and then get started by opening the 'start_here.inpyb' notebook.
 
 
 The project contains the following files and folders:
