@@ -1,5 +1,7 @@
 # Chronotopic Cartographies - Visualisation Generators, Texts, and Explanatory Guide
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/chronotopic-cartographies/visualisation-generators/HEAD)
+
 This repository contains marked up texts, visualisations, and Python scripts for generating visualisations related to the AHRC-funded *Chronotopic Cartographies for Literature* project at Lancaster University. 
 
 This readme file contains a complete explanation of the XML schema designed by the research team, documentation of the visualisations themselves, and a step-by-step guide to creating your own visualisations.
