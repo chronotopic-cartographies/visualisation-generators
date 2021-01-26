@@ -26,7 +26,7 @@ colour_style = {
     'background': {
         'color': '#525252',
         # To add a background image, uncomment the lines below and change the name of the file
-        'image': 'files/background_svgs/swallows_and_amazons.png',
+        #'image': 'files/background_svgs/swallows_and_amazons.png',
         'opacity': 0.6
     },
     'edges': [

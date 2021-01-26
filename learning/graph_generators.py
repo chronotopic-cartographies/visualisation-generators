@@ -221,14 +221,9 @@ class GraphGenerator():
         self.xml_dir = xml_dir
         self.file = file
     
-    def layout(self, algorithm='kamada', scale=10):
-        """Lay out the graph using networkx's built in algorithms"""
-        if algorithm == 'kamada':
-            pos = nx.kamada_kawai_layout(self.graph, center=[0,0], scale=scale)
-        elif algorithm == 'spring':
-            pos = nx.spring_layout(self.graph, center=[0,0], scale=scale, iterations=100)
-        elif algorithm == 'spectral':
-            pos = nx.spectral_layout(self.graph, center=[0,0], scale=scale)
+    def layout(self):
+        """Lay out the graph using a spring algorithm"""
+        pos = nx.spring_layout(self.graph, center=[0,0])
         
         for node, coords in pos.items():
             self.graph.nodes[node]['x'] = coords[0] * 100
@@ -240,13 +235,6 @@ class GraphGenerator():
             for line in nx.readwrite.gexf.generate_gexf(self.graph):
                 output_file.write(line)
 
-    def write_graphml(self):
-        """Write the graph to graphml"""
-        graphml_output_file = self.output_file[:-4] + '.graphml'
-        with open(self.output_dir + graphml_output_file, 'w') as output_file:
-            for line in nx.readwrite.graphml.generate_graphml(self.graph):
-                output_file.write(line)
-                
     def write_json(self):
         """Write the graph to json"""
         pass

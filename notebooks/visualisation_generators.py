@@ -228,15 +228,6 @@ class SvgGrapher:
         dwg.add(rect)
 
         if style['background'].get('image') is not None: 
-            #with open(style['background']['image'], 'rb') as file:
-            #    f = dwg.defs.add(dwg.filter(id="multiply", x=0, y=0, width="100%", height="100%"))
-            #    f.feFlood(x=0, y=0, width="100%", height="100%", result='flood', flood_color=style['background']['color'])
-            #    f.feBlend(in_="flood", in2="SourceGraphic", mode="multiply")
-            #    
-            #    img = file.read()
-            #    encoded = base64.b64encode(img).decode()
-            #    svgdata = 'data:image/svg+xml;base64,{}'.format(encoded)
-            #    image = dwg.add(dwg.image(href=svgdata, insert=(0, 0), size=dwg_size, filter="url(#multiply)", opacity=style['background']['opacity']))
             path = style['background'].get('image')
             img = Image(filename=path)
             img_data = img.make_blob(format='png')
