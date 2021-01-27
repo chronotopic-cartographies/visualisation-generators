@@ -140,14 +140,20 @@ class GraphToSvg():
         """
         Returns the size of a node, depending on the 'length' attribute
         """
+        size = 20
         if (length < 10):
-            return 20
+            return size
         if (length > 10) and (length < 100):
-            return length * 0.3
+            size = length * 0.3
         if (length > 100) and (length < 1000):
-            return length * 0.03
+            size = length * 0.03
         if (length > 1000):
-            return length * 0.003
+            size = length * 0.003
+        
+        if (size < 20):
+            return 20
+        else:
+            return size
     
     
     

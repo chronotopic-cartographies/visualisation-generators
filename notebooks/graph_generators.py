@@ -1,9 +1,16 @@
+# Python Core
 from lxml import etree
 import networkx as nx
 import pprint
-from bs4 import BeautifulSoup, element
 import json
 from io import StringIO
+
+# 3rd Party
+from bs4 import BeautifulSoup, element
+
+# This library
+from svg_generators import GraphToSvg
+from styles import colour_style, print_style
 
 
 class CCXMLValidator:
@@ -212,11 +219,23 @@ class GraphGenerator():
     output_file = None
     file = None
     
-    def __init__(self, xml_dir, output_dir, file):
-        tree = etree.parse(xml_dir + file)
+    def __init__(self, file, xml_dir='files/xml/', output_dir='files/graphs/', output_root=None):
+        """
+        Parses the XML, creates an empty graph, and prepares the output directories and files.
+        """
+        # Load the XML. If a file-like object has been passed rather than a path to a file, then the output_root property will not be generated from the file name, so needs to be set using the output_root parameter.
+        try:
+            tree = etree.parse(xml_dir + file)
+        except:
+            tree = etree.parse(file)
+        
+        if output_root != None:
+            self.output_root = output_root
+        else:
+            self.output_root = file[:-4]
+            
         self.xml_element = tree.getroot()
         self.graph = nx.DiGraph()
-        self.output_root = file[:-4]
         self.output_dir = output_dir
         self.xml_dir = xml_dir
         self.file = file
@@ -236,14 +255,15 @@ class GraphGenerator():
     
     def write_gexf(self):
         """Write the graph to gexf"""
-        with open(self.output_dir + self.output_file, 'w') as output_file:
+        output_file = self.output_root + self.output_suffix + '.gexf'
+        with open(self.output_dir + output_file, 'w') as output_file:
             for line in nx.readwrite.gexf.generate_gexf(self.graph):
                 output_file.write(line)
 
     def write_graphml(self):
         """Write the graph to graphml"""
-        graphml_output_file = self.output_file[:-4] + '.graphml'
-        with open(self.output_dir + graphml_output_file, 'w') as output_file:
+        output_file = self.output_root + self.output_suffix + '.graphml'
+        with open(self.output_dir + output_file, 'w') as output_file:
             for line in nx.readwrite.graphml.generate_graphml(self.graph):
                 output_file.write(line)
                 
@@ -305,12 +325,21 @@ class GraphGenerator():
         with open(self.output_dir + output_file, 'w') as file:
             file.write(geojson)
     
+    
+    def write_svg(self, algorithm='kamada', node_scale=1):
+        self.layout(algorithm=algorithm)
+        svggen = GraphToSvg(graph=self.graph)
+        output_file = self.output_root + self.output_suffix + '.svg'
+        svggen.draw_graph(output_file='files/svg/' + output_file, style=colour_style, curved=True, node_scale=node_scale)
+        return 'files/svg/' + output_file
+        
         
 class CompleteGraphGenerator(GraphGenerator):
     """A complete spatial graph, containing all toporefs and topoi"""
     
     def generate(self):
-        self.output_file = self.output_root +'-complete.gexf'
+        self.output_suffix = '-complete'
+        
         graph = self.graph
         xml_element = self.xml_element
         
@@ -409,7 +438,7 @@ class SyuzhetGraphGenerator(GraphGenerator):
         Takes an XML element marked up using the CC schema and returns a populated graph of the spatial nodes, connected sequentially as they appear in the text. Corresponds (loosely) with the syuzhet or story order of the text.
         """
 
-        self.output_file = self.output_root +'-syuzhet.gexf'
+        self.output_suffix = '-syuzhet'
         graph = self.graph
         xml_element = self.xml_element
         
@@ -449,7 +478,7 @@ class TopoiGraphGenerator(GraphGenerator):
         Iterate over an XML element and its children and generate a graph of topoi nodes and connections, including attributes.
         """
         
-        self.output_file = self.output_root +'-topoi.gexf'
+        self.output_suffix = '-topoi'
         graph = self.graph
         xml_element = self.xml_element
         
@@ -473,7 +502,7 @@ class TemporalTopoiGraphGenerator(GraphGenerator):
         of each as they are encountered, and the temporal index of the connecting edges.
         """
         
-        self.output_file = self.output_root +'-temporal-topoi.gexf'
+        self.output_suffix = '-temporal-topoi'
         graph = self.graph
         xml_element = self.xml_element
         
@@ -520,7 +549,7 @@ class TemporalTopoiGraphGenerator(GraphGenerator):
         """
         Takes an XML element and builds a graph of topoi, recording only timeframes
         """
-        self.output_file = self.output_root +'-temporal-topoi-simple.gexf'
+        self.output_suffix = '-temporal-topoi-simple'
         graph = self.graph
         xml_element = self.xml_element
         
@@ -552,7 +581,7 @@ class TopoiAndArchetypeGraphGenerator(GraphGenerator):
         Takes an XML element marked up using CLAYE and returns a populated graph of the topoi and their associated chronotopes
         """
         
-        self.output_file = self.output_root + '-topoi-and-chronotopic-archetypes.gexf'
+        self.output_suffix = '-topoi-and-chronotopic-archetypes'
         graph = self.graph
         xml_element = self.xml_element
         
@@ -571,7 +600,7 @@ class DeepChronotopesGraphGenerator(GraphGenerator):
         with open(self.xml_dir + self.file) as fp:
             soup = BeautifulSoup(fp, features="lxml")
         
-        self.output_file = self.output_root +'-deep-chronotopes.gexf'
+        self.output_suffix = '-deep-chronotopes'
         graph = self.graph
         
         # Add all the connections first
@@ -633,7 +662,7 @@ class ArchetypesAndToporefsGraphGenerator(GraphGenerator):
         their connections, and their associated toporefs.
         """
         
-        self.output_file = self.output_root + '-topoi-and-chronotopic-archetypes.gexf'
+        self.output_suffix = self.output_root + '-topoi-and-chronotopic-archetypes'
         graph = self.graph
         xml_element = self.xml_element
         
