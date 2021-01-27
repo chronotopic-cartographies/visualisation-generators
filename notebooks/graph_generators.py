@@ -219,7 +219,7 @@ class GraphGenerator():
     output_file = None
     file = None
     
-    def __init__(self, file, xml_dir='files/xml/', output_dir='files/graphs/', output_root=None):
+    def __init__(self, file, xml_dir='files/xml/', output_dir='files/graphs/', output_root=None, svg_dir='files/svg/'):
         """
         Parses the XML, creates an empty graph, and prepares the output directories and files.
         """
@@ -238,6 +238,7 @@ class GraphGenerator():
         self.graph = nx.DiGraph()
         self.output_dir = output_dir
         self.xml_dir = xml_dir
+        self.svg_dir = svg_dir
         self.file = file
     
     def layout(self, algorithm='kamada', scale=10):
@@ -326,11 +327,11 @@ class GraphGenerator():
             file.write(geojson)
     
     
-    def write_svg(self, algorithm='kamada', node_scale=1):
+    def write_svg(self, algorithm='kamada', node_scale=1, size=1.0, scale_correction=700):
         self.layout(algorithm=algorithm)
         svggen = GraphToSvg(graph=self.graph)
         output_file = self.output_root + self.output_suffix + '.svg'
-        svggen.draw_graph(output_file='files/svg/' + output_file, style=colour_style, curved=True, node_scale=node_scale)
+        svggen.draw_graph(output_file=self.svg_dir + output_file, style=colour_style, curved=True, node_scale=node_scale, size=size, scale_correction=scale_correction)
         return 'files/svg/' + output_file
         
         

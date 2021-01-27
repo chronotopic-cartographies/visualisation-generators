@@ -258,11 +258,14 @@ class GraphToSvg():
             
             # Shorten the line so it doesn't overlap the symbol
 
-            #source_size = ((float(self.graph.nodes[source]['length']) * 5) / 20) * size
-            #target_size = ((float(self.graph.nodes[target]['length']) * 5) / 20) * size
+
+            try:
+                source_size = self.get_node_size(self.graph.nodes[source]['length'])
+                target_size = self.get_node_size(self.graph.nodes[target]['length'])
+            except:
+                source_size = 20
+                target_size = 20
             
-            source_size = self.get_node_size(self.graph.nodes[source]['length'])
-            target_size = self.get_node_size(self.graph.nodes[target]['length'])
             
             edge_style = None
             
@@ -398,7 +401,10 @@ class GraphToSvg():
             data = self.graph.nodes[node]
             x = data['x']
             y = data['y']
-            node_size = self.get_node_size(self.graph.nodes[node]['length'])
+            try:
+                node_size = self.get_node_size(self.graph.nodes[node]['length'])
+            except:
+                node_size = 20
 
             circle = nodes_group.add(dwg.circle(stroke='none', fill=style['background']['color'], center=(x,y), r=node_size/2))
 
@@ -417,7 +423,10 @@ class GraphToSvg():
             data = self.graph.nodes[node]
             x = data['x']
             y = data['y']
-            node_size = self.get_node_size(self.graph.nodes[node]['length']) * size
+            try:
+                node_size = self.get_node_size(self.graph.nodes[node]['length']) * size
+            except:
+                node_size = 20
             font_size = (node_size * label_correction) / 2
 
             if font_size < 10:
