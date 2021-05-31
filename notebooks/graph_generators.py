@@ -714,11 +714,11 @@ def generate_all(xml_dir, output_dir, input_file):
     topoi.write_gexf()
     
     # Time Topoi
-    time_topoi = TemporalTopoiGraphGenerator(xml_dir=xml_dir, output_dir=output_dir, file=input_file)
-    time_topoi.generate()
-    time_topoi.write_gexf()
-    time_topoi.generate_simple()
-    time_topoi.write_gexf()
+    #time_topoi = TemporalTopoiGraphGenerator(xml_dir=xml_dir, output_dir=output_dir, file=input_file)
+    #time_topoi.generate()
+    #time_topoi.write_gexf()
+    #time_topoi.generate_simple()
+    #time_topoi.write_gexf()
     
     # Topoi and Archetypes
     topoi_and_archetypes = TopoiAndArchetypeGraphGenerator(xml_dir=xml_dir, output_dir=output_dir, file=input_file)
